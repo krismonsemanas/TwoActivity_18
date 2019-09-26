@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
         // or simply save your changes to "hot reload" in a Flutter IDE).
         // Notice that the counter didn't reset back to zero; the application
         // is not restarted.
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.amber,
       ),
       home: MyHomePage(title: 'Two Activity'),
     );
@@ -49,6 +49,7 @@ class _MyHomePageState extends State<MyHomePage> {
   _onPressed(){
      setState(() {
       _showText = _textInputController.text;
+      _textInputController.text="";
     });
   }
   @override
@@ -62,10 +63,19 @@ class _MyHomePageState extends State<MyHomePage> {
         // Center is a layout widget. It takes a single child and positions it
         // in the middle of the parent.
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: <Widget>[
-            Text('Message Recived', style: TextStyle(fontSize: 24.0,fontWeight: FontWeight.w500),),
-            Text('$_showText', style: TextStyle(fontSize: 18.0,fontWeight: FontWeight.w400),),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: <Widget>[
+                Text('Message Recived', style: TextStyle(fontSize: 24.0,fontWeight: FontWeight.w500),),
+                Text('$_showText', style: TextStyle(fontSize: 18.0,fontWeight: FontWeight.w400),),
+              ],
+            ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: <Widget>[
+
             Padding(
                 padding: const EdgeInsets.all(15.0),
                 child: TextField(
@@ -77,18 +87,19 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               Padding(
                     padding: const EdgeInsets.only(top: 8.0),
-                    child: RaisedButton(
+                    child: OutlineButton(
                       onPressed: _onPressed,
-                      color: Colors.amber,
+                      borderSide: BorderSide(color: Colors.amber),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
-                        Text('Send'),
+                        Text('Send', style: TextStyle(color:Colors.amber),),
                       ],),
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
-                      elevation: 0.0,
                     ),
                   )
+              ],
+            )
           ],
         ),
       ),
